@@ -3,461 +3,147 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alfredo — Professor · Developer · Consultor Digital</title>
+<title>Filipe Carlitos Alfredo — Professor · Developer · Consultor Digital</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
   :root {
-    --ink: #1a1a18;
-    --ink-2: #4a4a46;
-    --ink-3: #888780;
-    --surface: #fafaf8;
-    --surface-2: #f1efe8;
-    --gold: #ba7517;
-    --gold-light: #faeeda;
-    --green: #0f6e56;
-    --green-light: #e1f5ee;
-    --teal: #1d9e75;
-    --border: rgba(26,26,24,0.1);
-    --border-strong: rgba(26,26,24,0.2);
+    --ink: #1a1a18; --ink-2: #4a4a46; --ink-3: #888780;
+    --surface: #fafaf8; --surface-2: #f1efe8;
+    --gold: #ba7517; --gold-light: #faeeda;
+    --green: #0f6e56; --green-light: #e1f5ee; --teal: #1d9e75;
+    --border: rgba(26,26,24,0.1); --border-strong: rgba(26,26,24,0.2);
     --serif: 'DM Serif Display', Georgia, serif;
     --sans: 'Inter', system-ui, sans-serif;
     --mono: 'JetBrains Mono', monospace;
   }
-
   html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--surface); color: var(--ink); line-height: 1.7; font-size: 16px; }
 
-  body {
-    font-family: var(--sans);
-    background: var(--surface);
-    color: var(--ink);
-    line-height: 1.7;
-    font-size: 16px;
-  }
-
-  /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(250,250,248,0.92);
-    backdrop-filter: blur(12px);
+    background: rgba(250,250,248,0.92); backdrop-filter: blur(12px);
     border-bottom: 0.5px solid var(--border);
-    padding: 0 2rem;
-    display: flex; align-items: center; justify-content: space-between;
-    height: 60px;
+    padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 60px;
   }
-
-  .nav-logo {
-    font-family: var(--serif);
-    font-size: 1.1rem;
-    color: var(--ink);
-    text-decoration: none;
-    letter-spacing: -0.02em;
-  }
-
-  .nav-links {
-    display: flex; gap: 2rem; list-style: none;
-  }
-
-  .nav-links a {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--ink-2);
-    text-decoration: none;
-    letter-spacing: 0.03em;
-    transition: color 0.2s;
-  }
-
+  .nav-logo { font-family: var(--serif); font-size: 1.1rem; color: var(--ink); text-decoration: none; letter-spacing: -0.02em; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 13px; font-weight: 500; color: var(--ink-2); text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
   .nav-links a:hover { color: var(--ink); }
 
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: flex; align-items: center;
-    padding: 7rem 2rem 4rem;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .hero-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: center;
-    width: 100%;
-  }
-
-  .hero-eyebrow {
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.12em;
-    color: var(--green);
-    text-transform: uppercase;
-    margin-bottom: 1.2rem;
-    display: flex; align-items: center; gap: 10px;
-  }
-
-  .hero-eyebrow::before {
-    content: '';
-    display: block;
-    width: 32px; height: 1px;
-    background: var(--green);
-  }
-
-  .hero h1 {
-    font-family: var(--serif);
-    font-size: clamp(2.8rem, 5vw, 4.2rem);
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-    color: var(--ink);
-    margin-bottom: 1.5rem;
-  }
-
-  .hero h1 em {
-    font-style: italic;
-    color: var(--gold);
-  }
-
-  .hero-desc {
-    font-size: 1.05rem;
-    color: var(--ink-2);
-    line-height: 1.8;
-    margin-bottom: 2.5rem;
-    max-width: 480px;
-  }
-
-  .hero-actions {
-    display: flex; gap: 1rem; flex-wrap: wrap;
-  }
-
-  .btn-primary {
-    background: var(--ink);
-    color: var(--surface);
-    padding: 12px 28px;
-    border-radius: 100px;
-    font-size: 14px;
-    font-weight: 500;
-    text-decoration: none;
-    transition: background 0.2s, transform 0.15s;
-    display: inline-block;
-  }
-
+  .hero { min-height: 100vh; display: flex; align-items: center; padding: 7rem 2rem 4rem; max-width: 1100px; margin: 0 auto; }
+  .hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; width: 100%; }
+  .hero-eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; color: var(--green); text-transform: uppercase; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 10px; }
+  .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--green); }
+  .hero h1 { font-family: var(--serif); font-size: clamp(2.8rem, 5vw, 4.2rem); line-height: 1.1; letter-spacing: -0.03em; color: var(--ink); margin-bottom: 1.5rem; }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero-desc { font-size: 1.05rem; color: var(--ink-2); line-height: 1.8; margin-bottom: 2.5rem; max-width: 480px; }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary { background: var(--ink); color: var(--surface); padding: 12px 28px; border-radius: 100px; font-size: 14px; font-weight: 500; text-decoration: none; transition: background 0.2s, transform 0.15s; display: inline-block; }
   .btn-primary:hover { background: #333; transform: translateY(-1px); }
-
-  .btn-outline {
-    background: transparent;
-    color: var(--ink);
-    padding: 12px 28px;
-    border-radius: 100px;
-    border: 1px solid var(--border-strong);
-    font-size: 14px;
-    font-weight: 500;
-    text-decoration: none;
-    transition: border-color 0.2s, transform 0.15s;
-    display: inline-block;
-  }
-
+  .btn-outline { background: transparent; color: var(--ink); padding: 12px 28px; border-radius: 100px; border: 1px solid var(--border-strong); font-size: 14px; font-weight: 500; text-decoration: none; transition: border-color 0.2s, transform 0.15s; display: inline-block; }
   .btn-outline:hover { border-color: var(--ink); transform: translateY(-1px); }
 
-  /* HERO VISUAL */
-  .hero-visual {
-    display: flex; flex-direction: column; gap: 1rem;
-  }
-
-  .role-card {
-    background: white;
-    border: 0.5px solid var(--border);
-    border-radius: 16px;
-    padding: 1.25rem 1.5rem;
-    display: flex; align-items: center; gap: 1rem;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-
+  .hero-visual { display: flex; flex-direction: column; gap: 1rem; }
+  .role-card { background: white; border: 0.5px solid var(--border); border-radius: 16px; padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem; transition: transform 0.2s; }
   .role-card:hover { transform: translateX(6px); }
-
-  .role-icon {
-    width: 44px; height: 44px;
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 20px;
-    flex-shrink: 0;
-  }
-
+  .role-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
   .role-icon.math { background: var(--green-light); }
   .role-icon.dev { background: #e6f1fb; }
   .role-icon.consult { background: var(--gold-light); }
-
+  .role-icon.finance { background: #fbeaf0; }
   .role-label { font-size: 11px; color: var(--ink-3); font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; }
   .role-title { font-weight: 500; font-size: 15px; color: var(--ink); }
 
-  /* SECTIONS */
   section { padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; }
+  .section-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; color: var(--ink-3); text-transform: uppercase; margin-bottom: 0.75rem; }
+  .section-title { font-family: var(--serif); font-size: clamp(1.8rem, 3vw, 2.6rem); letter-spacing: -0.02em; color: var(--ink); line-height: 1.15; margin-bottom: 3rem; }
 
-  .section-header {
-    margin-bottom: 3rem;
-  }
+  .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; align-items: start; }
+  .about-bio p { color: var(--ink-2); margin-bottom: 1.2rem; font-size: 1.05rem; }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .stat-card { background: var(--surface-2); border-radius: 14px; padding: 1.25rem; }
+  .stat-number { font-family: var(--serif); font-size: 2rem; color: var(--ink); line-height: 1; margin-bottom: 4px; }
+  .stat-label { font-size: 13px; color: var(--ink-3); line-height: 1.4; }
 
-  .section-eyebrow {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    color: var(--ink-3);
-    text-transform: uppercase;
-    margin-bottom: 0.75rem;
-  }
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .skill-block { border: 0.5px solid var(--border); border-radius: 16px; padding: 1.75rem; background: var(--surface); }
+  .skill-block-icon { font-size: 24px; margin-bottom: 1rem; }
+  .skill-block h3 { font-family: var(--serif); font-size: 1.25rem; color: var(--ink); margin-bottom: 0.75rem; }
+  .skill-block p { font-size: 14px; color: var(--ink-2); line-height: 1.7; margin-bottom: 1rem; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { font-family: var(--mono); font-size: 11px; padding: 4px 10px; border-radius: 100px; background: var(--surface-2); color: var(--ink-2); }
 
-  .section-title {
-    font-family: var(--serif);
-    font-size: clamp(1.8rem, 3vw, 2.6rem);
-    letter-spacing: -0.02em;
-    color: var(--ink);
-    line-height: 1.15;
-  }
-
-  /* ABOUT */
-  #sobre .about-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 5rem;
-    align-items: start;
-  }
-
-  .about-bio p {
-    color: var(--ink-2);
-    margin-bottom: 1.2rem;
-    font-size: 1.05rem;
-  }
-
-  .about-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-
-  .stat-card {
-    background: var(--surface-2);
-    border-radius: 14px;
-    padding: 1.25rem;
-  }
-
-  .stat-number {
-    font-family: var(--serif);
-    font-size: 2rem;
-    color: var(--ink);
-    line-height: 1;
-    margin-bottom: 4px;
-  }
-
-  .stat-label {
-    font-size: 13px;
-    color: var(--ink-3);
-    line-height: 1.4;
-  }
-
-  /* SKILLS */
-  #competencias { background: white; max-width: 100%; padding: 6rem 0; }
-  #competencias .inner { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
-
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin-top: 3rem;
-  }
-
-  .skill-block {
-    border: 0.5px solid var(--border);
-    border-radius: 16px;
-    padding: 1.75rem;
-    background: var(--surface);
-  }
-
-  .skill-block-icon {
-    font-size: 24px;
-    margin-bottom: 1rem;
-  }
-
-  .skill-block h3 {
-    font-family: var(--serif);
-    font-size: 1.25rem;
-    color: var(--ink);
-    margin-bottom: 0.75rem;
-  }
-
-  .skill-block p {
-    font-size: 14px;
-    color: var(--ink-2);
-    line-height: 1.7;
-    margin-bottom: 1rem;
-  }
-
-  .skill-tags {
-    display: flex; flex-wrap: wrap; gap: 6px;
-  }
-
-  .tag {
-    font-family: var(--mono);
-    font-size: 11px;
-    padding: 4px 10px;
-    border-radius: 100px;
-    background: var(--surface-2);
-    color: var(--ink-2);
-  }
-
-  /* PROJETOS */
-  .projects-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5px;
-    border: 0.5px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-  }
-
-  .project-row {
-    background: white;
-    padding: 1.75rem 2rem;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 2rem;
-    align-items: center;
-    border-bottom: 0.5px solid var(--border);
-    transition: background 0.15s;
-    text-decoration: none;
-    color: inherit;
-  }
-
+  .projects-list { display: flex; flex-direction: column; border: 0.5px solid var(--border); border-radius: 16px; overflow: hidden; }
+  .project-row { background: white; padding: 1.75rem 2rem; display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: center; border-bottom: 0.5px solid var(--border); transition: background 0.15s; }
   .project-row:last-child { border-bottom: none; }
   .project-row:hover { background: var(--surface-2); }
-
   .project-meta { font-size: 12px; color: var(--ink-3); margin-bottom: 4px; font-family: var(--mono); letter-spacing: 0.04em; }
   .project-name { font-size: 1.1rem; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
   .project-desc { font-size: 14px; color: var(--ink-2); }
-
-  .project-badge {
-    padding: 5px 14px;
-    border-radius: 100px;
-    font-size: 12px;
-    font-weight: 500;
-    white-space: nowrap;
-  }
-
+  .project-badge { padding: 5px 14px; border-radius: 100px; font-size: 12px; font-weight: 500; white-space: nowrap; }
   .badge-active { background: var(--green-light); color: var(--green); }
   .badge-done { background: var(--surface-2); color: var(--ink-3); }
   .badge-progress { background: var(--gold-light); color: var(--gold); }
 
+  /* CERTIFICAÇÕES */
+  .certs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .cert-card { background: white; border: 0.5px solid var(--border); border-radius: 14px; padding: 1.25rem 1.5rem; }
+  .cert-issuer { font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
+  .cert-name { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 4px; line-height: 1.4; }
+  .cert-year { font-size: 12px; color: var(--ink-3); }
+  .cert-card.highlight { border-color: var(--teal); background: var(--green-light); }
+  .cert-card.highlight .cert-name { color: var(--green); }
+
+  /* EXPERIÊNCIAS */
+  .exp-list { display: flex; flex-direction: column; gap: 0; border: 0.5px solid var(--border); border-radius: 16px; overflow: hidden; }
+  .exp-row { background: white; padding: 1.5rem 2rem; border-bottom: 0.5px solid var(--border); display: grid; grid-template-columns: 110px 1fr; gap: 2rem; }
+  .exp-row:last-child { border-bottom: none; }
+  .exp-year { font-family: var(--mono); font-size: 12px; color: var(--ink-3); padding-top: 3px; }
+  .exp-role { font-weight: 500; font-size: 15px; color: var(--ink); margin-bottom: 2px; }
+  .exp-org { font-size: 14px; color: var(--ink-2); }
+
   /* FORMAÇÃO */
-  .edu-timeline {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    position: relative;
-    padding-left: 2rem;
-  }
-
-  .edu-timeline::before {
-    content: '';
-    position: absolute;
-    left: 6px; top: 8px; bottom: 8px;
-    width: 1px;
-    background: var(--border-strong);
-  }
-
-  .edu-item {
-    position: relative;
-    padding-bottom: 2.5rem;
-    padding-left: 1.5rem;
-  }
-
-  .edu-item::before {
-    content: '';
-    position: absolute;
-    left: -1.5rem;
-    top: 8px;
-    width: 10px; height: 10px;
-    border-radius: 50%;
-    background: white;
-    border: 2px solid var(--green);
-  }
-
+  .edu-timeline { display: flex; flex-direction: column; position: relative; padding-left: 2rem; }
+  .edu-timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .edu-item { position: relative; padding-bottom: 2.5rem; padding-left: 1.5rem; }
+  .edu-item::before { content: ''; position: absolute; left: -1.5rem; top: 8px; width: 10px; height: 10px; border-radius: 50%; background: white; border: 2px solid var(--green); }
   .edu-year { font-family: var(--mono); font-size: 12px; color: var(--ink-3); margin-bottom: 4px; }
   .edu-degree { font-weight: 500; font-size: 1rem; color: var(--ink); margin-bottom: 2px; }
   .edu-school { font-size: 14px; color: var(--ink-2); }
 
+  /* IDIOMAS */
+  .lang-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; }
+  .lang-card { background: white; border: 0.5px solid var(--border); border-radius: 12px; padding: 1rem; text-align: center; }
+  .lang-name { font-weight: 500; font-size: 14px; color: var(--ink); margin-bottom: 4px; }
+  .lang-level { font-size: 12px; color: var(--ink-3); }
+  .lang-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); margin: 8px auto 0; }
+  .lang-dot.medium { background: var(--gold); }
+  .lang-dot.low { background: var(--border-strong); }
+
   /* CONTACTO */
-  #contacto { background: var(--ink); max-width: 100%; padding: 6rem 0; }
-  #contacto .inner { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
-  #contacto .section-eyebrow { color: var(--gold); }
-  #contacto .section-title { color: white; }
-
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-    margin-top: 3rem;
-  }
-
-  .contact-intro {
-    font-size: 1.05rem;
-    color: rgba(255,255,255,0.65);
-    line-height: 1.8;
-  }
-
-  .contact-links {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .contact-item {
-    display: flex; align-items: center; gap: 1rem;
-    padding: 1.1rem 1.5rem;
-    border: 0.5px solid rgba(255,255,255,0.12);
-    border-radius: 12px;
-    text-decoration: none;
-    color: white;
-    transition: background 0.2s, border-color 0.2s;
-  }
-
-  .contact-item:hover {
-    background: rgba(255,255,255,0.06);
-    border-color: rgba(255,255,255,0.25);
-  }
-
-  .contact-item-icon {
-    width: 36px; height: 36px;
-    border-radius: 8px;
-    background: rgba(255,255,255,0.1);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px;
-  }
-
+  .contact-section { background: var(--ink); padding: 6rem 0; }
+  .contact-inner { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-top: 3rem; }
+  .contact-intro { font-size: 1.05rem; color: rgba(255,255,255,0.65); line-height: 1.8; }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-item { display: flex; align-items: center; gap: 1rem; padding: 1.1rem 1.5rem; border: 0.5px solid rgba(255,255,255,0.12); border-radius: 12px; text-decoration: none; color: white; transition: background 0.2s, border-color 0.2s; }
+  .contact-item:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.25); }
+  .contact-item-icon { width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 16px; }
   .contact-item-label { font-size: 11px; color: rgba(255,255,255,0.45); }
   .contact-item-value { font-size: 14px; font-weight: 500; }
 
-  /* FOOTER */
-  footer {
-    background: var(--ink);
-    border-top: 0.5px solid rgba(255,255,255,0.08);
-    padding: 1.5rem 2rem;
-    text-align: center;
-    font-size: 13px;
-    color: rgba(255,255,255,0.3);
-  }
-
-  /* DIVIDER */
+  footer { background: var(--ink); border-top: 0.5px solid rgba(255,255,255,0.08); padding: 1.5rem 2rem; text-align: center; font-size: 13px; color: rgba(255,255,255,0.3); }
   .divider { border: none; border-top: 0.5px solid var(--border); max-width: 1100px; margin: 0 auto; }
 
-  /* RESPONSIVE */
   @media (max-width: 768px) {
     nav { padding: 0 1rem; }
     .nav-links { display: none; }
-    .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-inner, .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
     .hero-visual { display: none; }
-    #sobre .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .skills-grid { grid-template-columns: 1fr; }
-    .contact-grid { grid-template-columns: 1fr; }
+    .skills-grid, .certs-grid { grid-template-columns: 1fr; }
+    .lang-grid { grid-template-columns: repeat(3, 1fr); }
+    .exp-row { grid-template-columns: 1fr; gap: 4px; }
     .project-row { grid-template-columns: 1fr; }
     section { padding: 4rem 1.25rem; }
   }
@@ -466,11 +152,12 @@
 <body>
 
 <nav>
-  <a class="nav-logo" href="#">Alfredo Muianga</a>
+  <a class="nav-logo" href="#">Filipe Carlitos Alfredo</a>
   <ul class="nav-links">
     <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#experiencia">Experiência</a></li>
     <li><a href="#competencias">Competências</a></li>
-    <li><a href="#projetos">Projetos</a></li>
+    <li><a href="#certificacoes">Certificações</a></li>
     <li><a href="#formacao">Formação</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
@@ -480,13 +167,13 @@
 <div class="hero">
   <div class="hero-inner">
     <div>
-      <div class="hero-eyebrow">Mozambique · Niassa · Maputo</div>
-      <h1>Professor,<br><em>Developer</em><br>& Consultor</h1>
+      <div class="hero-eyebrow">Niassa · Moçambique</div>
+      <h1>Professor,<br><em>Analista</em><br>& Inovador</h1>
       <p class="hero-desc">
-        Combino a precisão da Matemática, a criatividade do desenvolvimento de software e a visão da gestão estratégica para criar soluções que transformam a educação e a governação digital em Moçambique.
+        Licenciado em Ensino de Matemática com Habilitações em Estatística pela UniRovuma. Combino pedagogia, análise de dados e inteligência artificial para transformar a educação e a governação digital em Moçambique.
       </p>
       <div class="hero-actions">
-        <a href="#projetos" class="btn-primary">Ver projetos</a>
+        <a href="#experiencia" class="btn-primary">Ver experiência</a>
         <a href="#contacto" class="btn-outline">Entrar em contacto</a>
       </div>
     </div>
@@ -495,21 +182,28 @@
         <div class="role-icon math">📐</div>
         <div>
           <div class="role-label">Educação</div>
-          <div class="role-title">Professor de Matemática</div>
+          <div class="role-title">Professor de Matemática · MEC</div>
         </div>
       </div>
       <div class="role-card">
-        <div class="role-icon dev">💻</div>
+        <div class="role-icon dev">📊</div>
         <div>
-          <div class="role-label">Tecnologia</div>
-          <div class="role-title">Full-Stack Developer · SIGE</div>
+          <div class="role-label">Dados & IA</div>
+          <div class="role-title">Analista · SPSS · Python</div>
         </div>
       </div>
       <div class="role-card">
-        <div class="role-icon consult">🌍</div>
+        <div class="role-icon finance">💼</div>
         <div>
-          <div class="role-label">Gestão & IA</div>
-          <div class="role-title">Consultor Digital · Niassa</div>
+          <div class="role-label">Finanças</div>
+          <div class="role-title">Trade Finance · Euro Exim Bank</div>
+        </div>
+      </div>
+      <div class="role-card">
+        <div class="role-icon consult">🤖</div>
+        <div>
+          <div class="role-label">Certificado Anthropic</div>
+          <div class="role-title">AI Fluency for Educators</div>
         </div>
       </div>
     </div>
@@ -520,38 +214,89 @@
 
 <!-- SOBRE -->
 <section id="sobre">
-  <div class="section-header">
-    <div class="section-eyebrow">01 — Sobre mim</div>
-    <h2 class="section-title">Onde o conhecimento<br>encontra a tecnologia</h2>
-  </div>
+  <div class="section-eyebrow">01 — Sobre mim</div>
+  <h2 class="section-title">Onde a Matemática<br>encontra a inovação</h2>
   <div class="about-grid">
     <div class="about-bio">
-      <p>
-        Sou professor de Matemática com profunda paixão por Inteligência Artificial e transformação digital. Acredito que a tecnologia deve ser uma ponte — entre o aluno e o conhecimento, entre as instituições e a eficiência, entre Moçambique e o futuro digital.
-      </p>
-      <p>
-        Em paralelo à docência, desenvolvo o SIGE — um Sistema de Gestão Educacional full-stack destinado ao Ministério da Educação e Cultura, que digitaliza a gestão de escolas, professores, turmas e pautas em todo o país.
-      </p>
-      <p>
-        Estou também a finalizar a Licenciatura em Gestão de Empresas na Universidade Aberta ISCED, consolidando a minha visão multidisciplinar de educação, tecnologia e gestão estratégica.
-      </p>
+      <p>Sou Filipe Carlitos Alfredo, nascido em Milange, Zambézia, e residente em Niassa. Licenciado em Ensino de Matemática com Habilitações em Estatística pela Universidade Rovuma, tenho construído uma carreira multidisciplinar que atravessa a educação, a análise de dados, as finanças internacionais e a inteligência artificial.</p>
+      <p>Lecionei em escolas secundárias, fui Docente-Monitor na UniRovuma, analisei dados agrícolas na Direção de Agricultura de Niassa, ensinei Análise Matemática na Universidade Católica de Moçambique e exerci como Trade Finance Executive no Euro Exim Bank.</p>
+      <p>Falo Português, Inglês, Chicheua, Elomwe e Emacua — uma riqueza linguística que reflecte a minha ligação profunda ao contexto moçambicano e à colaboração internacional.</p>
     </div>
     <div class="about-stats">
       <div class="stat-card">
-        <div class="stat-number">5+</div>
-        <div class="stat-label">Anos em educação e docência</div>
+        <div class="stat-number">10+</div>
+        <div class="stat-label">Certificações e formações internacionais</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number">1</div>
-        <div class="stat-label">Sistema nacional em desenvolvimento (SIGE)</div>
+        <div class="stat-number">5</div>
+        <div class="stat-label">Idiomas dominados</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number">3</div>
-        <div class="stat-label">Domínios combinados: educação, dev, gestão</div>
+        <div class="stat-number">6+</div>
+        <div class="stat-label">Anos de experiência profissional</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number">11</div>
-        <div class="stat-label">Províncias que o SIGE pode alcançar</div>
+        <div class="stat-number">4</div>
+        <div class="stat-label">Instituições de ensino superior servidas</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- EXPERIÊNCIA -->
+<section id="experiencia">
+  <div class="section-eyebrow">02 — Experiência profissional</div>
+  <h2 class="section-title">Um percurso<br>diversificado</h2>
+  <div class="exp-list">
+    <div class="exp-row">
+      <div class="exp-year">2024–2025</div>
+      <div>
+        <div class="exp-role">Trade Finance Executive</div>
+        <div class="exp-org">Euro Exim Bank</div>
+      </div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-year">2023</div>
+      <div>
+        <div class="exp-role">Professor de Matemática</div>
+        <div class="exp-org">Ministério da Educação e Cultura de Moçambique</div>
+      </div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-year">2022</div>
+      <div>
+        <div class="exp-role">Docente de Análise Matemática</div>
+        <div class="exp-org">Faculdade de Gestão de Recursos Florestais e Faunísticos · Universidade Católica de Moçambique</div>
+      </div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-year">2022</div>
+      <div>
+        <div class="exp-role">Professor Substituto de Física (11ª e 12ª classes)</div>
+        <div class="exp-org">Escola Secundária São Martinho de Lima · Lichinga</div>
+      </div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-year">2019–2022</div>
+      <div>
+        <div class="exp-role">Docente-Monitor — Matemática & Gestão de RH</div>
+        <div class="exp-org">Universidade Rovuma, Extensão do Niassa</div>
+      </div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-year">2021</div>
+      <div>
+        <div class="exp-role">Técnico Estagiário — Digitador, Analista de Dados & Relatórios</div>
+        <div class="exp-org">Direção de Agricultura e Pescas de Niassa</div>
+      </div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-year">2021</div>
+      <div>
+        <div class="exp-role">Professor Estagiário</div>
+        <div class="exp-org">Escola Secundária de Kankhomba</div>
       </div>
     </div>
   </div>
@@ -560,81 +305,57 @@
 <hr class="divider">
 
 <!-- COMPETÊNCIAS -->
-<section id="competencias" style="background:white; max-width:100%; padding: 6rem 0;">
+<section id="competencias" style="background:white; max-width:100%; padding:6rem 0;">
   <div style="max-width:1100px; margin:0 auto; padding:0 2rem;">
-    <div class="section-header">
-      <div class="section-eyebrow">02 — Competências</div>
-      <h2 class="section-title">O que faço bem</h2>
-    </div>
+    <div class="section-eyebrow">03 — Competências</div>
+    <h2 class="section-title">O que faço bem</h2>
     <div class="skills-grid">
       <div class="skill-block">
         <div class="skill-block-icon">📐</div>
-        <h3>Ensino & Matemática</h3>
-        <p>Leciono Matemática com foco na compreensão profunda dos conceitos, utilizando ferramentas digitais para tornar o ensino mais acessível e eficaz.</p>
+        <h3>Matemática & Estatística</h3>
+        <p>Licenciado em Ensino de Matemática com habilitações em Estatística. Leciono e aplico métodos quantitativos em contextos académicos e profissionais.</p>
         <div class="skill-tags">
-          <span class="tag">Álgebra</span>
-          <span class="tag">Estatística</span>
-          <span class="tag">Probabilidade</span>
-          <span class="tag">Cálculo</span>
-          <span class="tag">Currículo MEC</span>
-        </div>
-      </div>
-      <div class="skill-block">
-        <div class="skill-block-icon">💻</div>
-        <h3>Desenvolvimento Full-Stack</h3>
-        <p>Construo sistemas web completos do zero — desde a interface ao servidor e base de dados — com foco em escalabilidade e usabilidade institucional.</p>
-        <div class="skill-tags">
-          <span class="tag">Node.js</span>
-          <span class="tag">Express</span>
-          <span class="tag">PostgreSQL</span>
-          <span class="tag">Prisma</span>
-          <span class="tag">JavaScript</span>
-          <span class="tag">Railway</span>
-          <span class="tag">GitHub Pages</span>
+          <span class="tag">Álgebra</span><span class="tag">Estatística</span><span class="tag">Probabilidade</span><span class="tag">Análise Matemática</span><span class="tag">IBM SPSS</span>
         </div>
       </div>
       <div class="skill-block">
         <div class="skill-block-icon">🤖</div>
         <h3>Inteligência Artificial</h3>
-        <p>Aplico ferramentas de IA (Claude, GPT, automações) em contextos educativos e de gestão, construindo workflows produtivos e aplicações com API.</p>
+        <p>Certificado pela Anthropic em AI Fluency for Educators e pela Microsoft em IA Generativa. Aplica IA no ensino, na análise de dados e em fluxos de trabalho profissionais.</p>
         <div class="skill-tags">
-          <span class="tag">Claude API</span>
-          <span class="tag">Prompt Engineering</span>
-          <span class="tag">AI Workflows</span>
-          <span class="tag">Automação</span>
+          <span class="tag">Claude · Anthropic</span><span class="tag">Microsoft Copilot</span><span class="tag">Generative AI</span><span class="tag">Python</span>
         </div>
       </div>
       <div class="skill-block">
-        <div class="skill-block-icon">📊</div>
-        <h3>Gestão de Empresas</h3>
-        <p>Formação em gestão estratégica, contabilidade de gestão e microeconomia, aplicada à elaboração de propostas e projetos institucionais.</p>
+        <div class="skill-block-icon">💻</div>
+        <h3>Tecnologia & Informática</h3>
+        <p>Domínio avançado do ecossistema Microsoft 365, computação em nuvem, plataformas de e-learning e ferramentas de análise de dados.</p>
         <div class="skill-tags">
-          <span class="tag">Contabilidade</span>
-          <span class="tag">Microeconomia</span>
-          <span class="tag">Gestão Estratégica</span>
-          <span class="tag">Propostas</span>
+          <span class="tag">Microsoft 365</span><span class="tag">Google Classroom</span><span class="tag">Moodle</span><span class="tag">Cloud Computing</span><span class="tag">Python</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-icon">💼</div>
+        <h3>Finanças & Comércio</h3>
+        <p>Experiência como Trade Finance Executive no Euro Exim Bank, com formação em gestão de projetos e competências em persuasão e vendas pelo LinkedIn.</p>
+        <div class="skill-tags">
+          <span class="tag">Trade Finance</span><span class="tag">Gestão de Projetos</span><span class="tag">Negociação</span><span class="tag">Vendas</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-icon">🎓</div>
+        <h3>Pedagogia & Formação</h3>
+        <p>Mais de 6 anos de experiência docente em múltiplos níveis — secundário, universitário e formação complementar — incluindo atendimento ao cliente e call center.</p>
+        <div class="skill-tags">
+          <span class="tag">Ensino Superior</span><span class="tag">Ensino Secundário</span><span class="tag">E-learning</span><span class="tag">Formação</span>
         </div>
       </div>
       <div class="skill-block">
         <div class="skill-block-icon">🌍</div>
-        <h3>Governação Digital</h3>
-        <p>Colaboro em iniciativas de transformação digital em Niassa, ligando tecnologia, infraestrutura e políticas públicas para o desenvolvimento provincial.</p>
+        <h3>Liderança & Impacto Social</h3>
+        <p>Delegado virtual no World Bank Youth Summit, capacitador em direitos da criança e empoderamento da rapariga, e participante no Bootcamp do Standard Bank.</p>
         <div class="skill-tags">
-          <span class="tag">e-Gov</span>
-          <span class="tag">Política Pública</span>
-          <span class="tag">Niassa Digital</span>
-          <span class="tag">Conectividade</span>
-        </div>
-      </div>
-      <div class="skill-block">
-        <div class="skill-block-icon">📄</div>
-        <h3>Comunicação Institucional</h3>
-        <p>Elaboro apresentações, relatórios e propostas para ministérios e parceiros, em português, com rigor técnico e linguagem adequada ao contexto oficial.</p>
-        <div class="skill-tags">
-          <span class="tag">PowerPoint</span>
-          <span class="tag">Relatórios</span>
-          <span class="tag">Propostas MEC</span>
-          <span class="tag">Português</span>
+          <span class="tag">World Bank</span><span class="tag">Save the Children</span><span class="tag">Standard Bank</span><span class="tag">Liderança</span>
         </div>
       </div>
     </div>
@@ -643,44 +364,55 @@
 
 <hr class="divider">
 
-<!-- PROJETOS -->
-<section id="projetos">
-  <div class="section-header">
-    <div class="section-eyebrow">03 — Projetos</div>
-    <h2 class="section-title">Trabalho que<br>deixa marca</h2>
-  </div>
-  <div class="projects-list">
-    <div class="project-row">
-      <div>
-        <div class="project-meta">Full-Stack · Node.js · PostgreSQL · Railway</div>
-        <div class="project-name">SIGE — Sistema de Gestão Educacional</div>
-        <div class="project-desc">Plataforma nacional para gestão de escolas, professores, turmas, pautas e hierarquias administrativas. Destinado ao Ministério da Educação e Cultura de Moçambique.</div>
-      </div>
-      <span class="project-badge badge-active">Em desenvolvimento</span>
+<!-- CERTIFICAÇÕES -->
+<section id="certificacoes">
+  <div class="section-eyebrow">04 — Certificações</div>
+  <h2 class="section-title">Reconhecimento<br>internacional</h2>
+  <div class="certs-grid">
+    <div class="cert-card highlight">
+      <div class="cert-issuer">Anthropic</div>
+      <div class="cert-name">AI Fluency for Educators</div>
+      <div class="cert-year">2025 · Certificate of Completion</div>
     </div>
-    <div class="project-row">
-      <div>
-        <div class="project-meta">PowerPoint · Governação · Niassa</div>
-        <div class="project-name">Niassa Conectado, Digital e Inteligente</div>
-        <div class="project-desc">Apresentação estratégica de 12 slides para iniciativa de governação digital na província de Niassa, co-autoria com Nélson Maquile. Cobrindo IA, conectividade e roadmap de implementação.</div>
-      </div>
-      <span class="project-badge badge-done">Entregue</span>
+    <div class="cert-card">
+      <div class="cert-issuer">Microsoft Portugal</div>
+      <div class="cert-name">Microsoft Learn for Educators — Generative AI for Teaching Bootcamp</div>
+      <div class="cert-year">2025</div>
     </div>
-    <div class="project-row">
-      <div>
-        <div class="project-meta">Matemática · Ensino · Digital</div>
-        <div class="project-name">Recursos Didáticos Digitais</div>
-        <div class="project-desc">Fichas e materiais pedagógicos de Matemática (probabilidade, estatística, álgebra) desenvolvidos com ferramentas de IA para apoiar alunos do ensino secundário.</div>
-      </div>
-      <span class="project-badge badge-progress">Em curso</span>
+    <div class="cert-card">
+      <div class="cert-issuer">Microsoft Brasil</div>
+      <div class="cert-name">Microsoft Security, Compliance & Identity Fundamentals (SC-900)</div>
+      <div class="cert-year">2025</div>
     </div>
-    <div class="project-row">
-      <div>
-        <div class="project-meta">Gestão · Académico · ISCED</div>
-        <div class="project-name">Licenciatura em Gestão de Empresas</div>
-        <div class="project-desc">Avaliações e trabalhos académicos em Contabilidade de Gestão, Introdução à Gestão II e Microeconomia, com aplicação prática ao contexto empresarial moçambicano.</div>
-      </div>
-      <span class="project-badge badge-active">Em curso</span>
+    <div class="cert-card">
+      <div class="cert-issuer">Univ. Eduardo Mondlane</div>
+      <div class="cert-name">Atendimento ao Cliente · Call Center · Secretariado Executivo · Atendimento Digital</div>
+      <div class="cert-year">2025</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-issuer">Ka Solution · IT Knowledge Academy · Brasil</div>
+      <div class="cert-name">Inteligência Artificial para Todos: Tendência ou Transformação Definitiva dos Negócios?</div>
+      <div class="cert-year">2025</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-issuer">LinkedIn Learning</div>
+      <div class="cert-name">Fundamentos de Gestão de Projetos</div>
+      <div class="cert-year">2024</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-issuer">LinkedIn Learning</div>
+      <div class="cert-name">Persuasão em Vendas: Como Lidar com Diferentes Personalidades</div>
+      <div class="cert-year">2024</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-issuer">Standard Bank</div>
+      <div class="cert-name">Bootcamp Ideate</div>
+      <div class="cert-year">2024</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-issuer">World Bank Group</div>
+      <div class="cert-name">Delegado Virtual — New Horizons Youth-led Innovation for a Livable Planet (Youth Summit)</div>
+      <div class="cert-year">2025</div>
     </div>
   </div>
 </section>
@@ -689,81 +421,116 @@
 
 <!-- FORMAÇÃO -->
 <section id="formacao">
-  <div class="section-header">
-    <div class="section-eyebrow">04 — Formação</div>
-    <h2 class="section-title">O caminho<br>até aqui</h2>
-  </div>
+  <div class="section-eyebrow">05 — Formação académica</div>
+  <h2 class="section-title">O caminho<br>até aqui</h2>
   <div class="edu-timeline">
     <div class="edu-item">
-      <div class="edu-year">Em curso · 2024–presente</div>
+      <div class="edu-year">Em curso · Gestão de Empresas</div>
       <div class="edu-degree">Licenciatura em Gestão de Empresas</div>
       <div class="edu-school">Universidade Aberta ISCED · Moçambique</div>
     </div>
     <div class="edu-item">
-      <div class="edu-year">Formação contínua · 2023–presente</div>
-      <div class="edu-degree">Inteligência Artificial & Desenvolvimento Web</div>
-      <div class="edu-school">Autodidacta · Claude, Node.js, PostgreSQL, GitHub</div>
+      <div class="edu-year">2018–2022</div>
+      <div class="edu-degree">Licenciatura em Ensino de Matemática com Habilitações em Estatística</div>
+      <div class="edu-school">Universidade Rovuma (UniRovuma), Extensão de Niassa</div>
     </div>
     <div class="edu-item">
-      <div class="edu-year">Carreira · 2019–presente</div>
-      <div class="edu-degree">Professor de Matemática</div>
-      <div class="edu-school">Ensino Secundário · Moçambique</div>
+      <div class="edu-year">2012–2016</div>
+      <div class="edu-degree">Ensino Secundário Geral</div>
+      <div class="edu-school">Escola Secundária Geral de Milange</div>
     </div>
     <div class="edu-item">
-      <div class="edu-year">Formação base</div>
-      <div class="edu-degree">Formação em Ensino de Matemática</div>
-      <div class="edu-school">Instituição de formação de professores · Moçambique</div>
+      <div class="edu-year">2004–2010</div>
+      <div class="edu-degree">Ensino Primário do 1.º e 2.º grau</div>
+      <div class="edu-school">Escola Primária Completa de Chá Oriental · Milange, Zambézia</div>
     </div>
   </div>
-</section>
 
-<!-- CONTACTO -->
-<section id="contacto" style="background:var(--ink); max-width:100%; padding:6rem 0;">
-  <div style="max-width:1100px; margin:0 auto; padding:0 2rem;">
-    <div class="section-header">
-      <div class="section-eyebrow" style="color:var(--gold);">05 — Contacto</div>
-      <h2 class="section-title" style="color:white;">Vamos<br>conversar</h2>
-    </div>
-    <div class="contact-grid">
-      <p class="contact-intro">
-        Estou disponível para colaborações em projetos de tecnologia educacional, consultoria digital, desenvolvimento de software institucional ou qualquer iniciativa que una educação, IA e impacto real em Moçambique.
-      </p>
-      <div class="contact-links">
-        <a href="mailto:alfredo@exemplo.co.mz" class="contact-item">
-          <div class="contact-item-icon">✉️</div>
-          <div>
-            <div class="contact-item-label">Email</div>
-            <div class="contact-item-value">alfredo@exemplo.co.mz</div>
-          </div>
-        </a>
-        <a href="https://github.com" class="contact-item" target="_blank">
-          <div class="contact-item-icon">💾</div>
-          <div>
-            <div class="contact-item-label">GitHub</div>
-            <div class="contact-item-value">github.com/alfredo-muianga</div>
-          </div>
-        </a>
-        <a href="https://linkedin.com" class="contact-item" target="_blank">
-          <div class="contact-item-icon">🔗</div>
-          <div>
-            <div class="contact-item-label">LinkedIn</div>
-            <div class="contact-item-value">linkedin.com/in/alfredo-muianga</div>
-          </div>
-        </a>
-        <div class="contact-item" style="cursor:default;">
-          <div class="contact-item-icon">📍</div>
-          <div>
-            <div class="contact-item-label">Localização</div>
-            <div class="contact-item-value">Maputo · Niassa, Moçambique</div>
-          </div>
-        </div>
+  <!-- IDIOMAS -->
+  <div style="margin-top:3rem;">
+    <div class="section-eyebrow" style="margin-bottom:1.5rem;">Competências linguísticas</div>
+    <div class="lang-grid">
+      <div class="lang-card">
+        <div class="lang-name">Português</div>
+        <div class="lang-level">Excelente</div>
+        <div class="lang-dot"></div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-name">Inglês</div>
+        <div class="lang-level">Bom / Excelente</div>
+        <div class="lang-dot"></div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-name">Chicheua</div>
+        <div class="lang-level">Excelente</div>
+        <div class="lang-dot"></div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-name">Elomwe</div>
+        <div class="lang-level">Razoável</div>
+        <div class="lang-dot medium"></div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-name">Emacua</div>
+        <div class="lang-level">Razoável</div>
+        <div class="lang-dot medium"></div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- CONTACTO -->
+<div class="contact-section">
+  <div class="contact-inner">
+    <div class="section-eyebrow" style="color:var(--gold);">06 — Contacto</div>
+    <h2 class="section-title" style="color:white;">Vamos<br>conversar</h2>
+    <div class="contact-grid">
+      <p class="contact-intro">
+        Estou disponível para oportunidades em educação, análise de dados, inteligência artificial, formação profissional, finanças ou qualquer iniciativa que una conhecimento e impacto real em Moçambique e no mundo.
+      </p>
+      <div class="contact-links">
+        <a href="tel:+258876344662" class="contact-item">
+          <div class="contact-item-icon">📱</div>
+          <div>
+            <div class="contact-item-label">Telemóvel / WhatsApp</div>
+            <div class="contact-item-value">+258 876 344 662</div>
+          </div>
+        </a>
+        <a href="tel:+258844334461" class="contact-item">
+          <div class="contact-item-icon">📞</div>
+          <div>
+            <div class="contact-item-label">Alternativo</div>
+            <div class="contact-item-value">+258 844 334 461</div>
+          </div>
+        </a>
+        <a href="mailto:alfredofilipecarlitos@gmail.com" class="contact-item">
+          <div class="contact-item-icon">✉️</div>
+          <div>
+            <div class="contact-item-label">Email principal</div>
+            <div class="contact-item-value">alfredofilipecarlitos@gmail.com</div>
+          </div>
+        </a>
+        <a href="mailto:f.alfredo34@yahoo.com" class="contact-item">
+          <div class="contact-item-icon">📧</div>
+          <div>
+            <div class="contact-item-label">Email alternativo</div>
+            <div class="contact-item-value">f.alfredo34@yahoo.com</div>
+          </div>
+        </a>
+        <div class="contact-item" style="cursor:default;">
+          <div class="contact-item-icon">📍</div>
+          <div>
+            <div class="contact-item-label">Residência</div>
+            <div class="contact-item-value">Bairro de Novo, Vila de Insaca, Niassa</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <footer>
-  © 2025 Alfredo Muianga · Professor · Developer · Consultor Digital · Moçambique
+  © 2026 Filipe Carlitos Alfredo · Professor · Analista de Dados · Consultor de IA · Moçambique
 </footer>
 
 </body>
