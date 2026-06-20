@@ -12,42 +12,74 @@
     --surface: #fafaf8; --surface-2: #f1efe8;
     --gold: #ba7517; --gold-light: #faeeda;
     --green: #0f6e56; --green-light: #e1f5ee; --teal: #1d9e75;
-    --border: rgba(26,26,24,0.1); --border-strong: rgba(26,26,24,0.2);
+    --border: rgba(26,26,24,0.08); --border-strong: rgba(26,26,24,0.18);
     --serif: 'DM Serif Display', Georgia, serif;
     --sans: 'Inter', system-ui, sans-serif;
     --mono: 'JetBrains Mono', monospace;
+    --shadow-sm: 0 1px 2px rgba(26,26,24,0.04), 0 1px 1px rgba(26,26,24,0.03);
+    --shadow-md: 0 4px 16px rgba(26,26,24,0.06), 0 1px 4px rgba(26,26,24,0.04);
+    --shadow-lg: 0 12px 32px rgba(26,26,24,0.10), 0 2px 8px rgba(26,26,24,0.05);
   }
   html { scroll-behavior: smooth; }
-  body { font-family: var(--sans); background: var(--surface); color: var(--ink); line-height: 1.7; font-size: 16px; }
+  body {
+    font-family: var(--sans); color: var(--ink); line-height: 1.7; font-size: 16px;
+    background:
+      radial-gradient(ellipse 900px 500px at 12% -5%, rgba(15,110,86,0.07), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 95% 8%, rgba(186,117,23,0.06), transparent 60%),
+      var(--surface);
+    background-attachment: fixed;
+  }
+
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s cubic-bezier(.2,.7,.2,1), transform 0.7s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in-view { opacity: 1; transform: translateY(0); }
 
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(250,250,248,0.92); backdrop-filter: blur(12px);
-    border-bottom: 0.5px solid var(--border);
-    padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 60px;
+    background: rgba(250,250,248,0.85); backdrop-filter: blur(16px) saturate(1.4);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px;
+    transition: box-shadow 0.3s;
   }
-  .nav-logo { font-family: var(--serif); font-size: 1.1rem; color: var(--ink); text-decoration: none; letter-spacing: -0.02em; }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a { font-size: 13px; font-weight: 500; color: var(--ink-2); text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+  nav.scrolled { box-shadow: var(--shadow-sm); }
+  .nav-logo { font-family: var(--serif); font-size: 1.15rem; color: var(--ink); text-decoration: none; letter-spacing: -0.02em; transition: opacity 0.2s; }
+  .nav-logo:hover { opacity: 0.7; }
+  .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+  .nav-links a { position: relative; font-size: 13px; font-weight: 500; color: var(--ink-2); text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; padding-bottom: 4px; }
+  .nav-links a::after { content: ''; position: absolute; left: 0; right: 100%; bottom: 0; height: 1.5px; background: var(--green); transition: right 0.25s cubic-bezier(.2,.7,.2,1); }
   .nav-links a:hover { color: var(--ink); }
+  .nav-links a:hover::after { right: 0; }
 
-  .hero { min-height: 100vh; display: flex; align-items: center; padding: 7rem 2rem 4rem; max-width: 1100px; margin: 0 auto; }
+  .hero { min-height: 100vh; display: flex; align-items: center; padding: 7.5rem 2rem 4rem; max-width: 1100px; margin: 0 auto; animation: hero-in 0.9s cubic-bezier(.2,.7,.2,1) both; }
+  @keyframes hero-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
   .hero-inner { display: grid; grid-template-columns: auto 1fr 1fr; gap: 3.5rem; align-items: center; width: 100%; }
   .hero-eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; color: var(--green); text-transform: uppercase; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 10px; }
   .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--green); }
-  .hero h1 { font-family: var(--serif); font-size: clamp(2.8rem, 5vw, 4.2rem); line-height: 1.1; letter-spacing: -0.03em; color: var(--ink); margin-bottom: 1.5rem; }
-  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero h1 { font-family: var(--serif); font-size: clamp(2.8rem, 5vw, 4.2rem); line-height: 1.08; letter-spacing: -0.03em; color: var(--ink); margin-bottom: 1.5rem; }
+  .hero h1 em { font-style: italic; background: linear-gradient(100deg, var(--gold), #d99a3e); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .hero-desc { font-size: 1.05rem; color: var(--ink-2); line-height: 1.8; margin-bottom: 2.5rem; max-width: 480px; }
   .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-  .btn-primary { background: var(--ink); color: var(--surface); padding: 12px 28px; border-radius: 100px; font-size: 14px; font-weight: 500; text-decoration: none; transition: background 0.2s, transform 0.15s; display: inline-block; }
-  .btn-primary:hover { background: #333; transform: translateY(-1px); }
-  .btn-outline { background: transparent; color: var(--ink); padding: 12px 28px; border-radius: 100px; border: 1px solid var(--border-strong); font-size: 14px; font-weight: 500; text-decoration: none; transition: border-color 0.2s, transform 0.15s; display: inline-block; }
-  .btn-outline:hover { border-color: var(--ink); transform: translateY(-1px); }
+  .btn-primary { background: var(--ink); color: var(--surface); padding: 13px 30px; border-radius: 100px; font-size: 14px; font-weight: 500; text-decoration: none; transition: all 0.25s cubic-bezier(.2,.7,.2,1); display: inline-block; box-shadow: var(--shadow-sm); }
+  .btn-primary:hover { background: #2b2b27; transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  .btn-outline { background: white; color: var(--ink); padding: 13px 30px; border-radius: 100px; border: 1px solid var(--border-strong); font-size: 14px; font-weight: 500; text-decoration: none; transition: all 0.25s cubic-bezier(.2,.7,.2,1); display: inline-block; }
+  .btn-outline:hover { border-color: var(--ink); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
 
-  .hero-visual { display: flex; flex-direction: column; gap: 1rem; }
-  .role-card { background: white; border: 0.5px solid var(--border); border-radius: 16px; padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem; transition: transform 0.2s; }
-  .role-card:hover { transform: translateX(6px); }
-  .role-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+  .hero-photo { display: flex; align-items: center; justify-content: center; }
+  .photo-frame {
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid white;
+    box-shadow: 0 0 0 2px var(--green), var(--shadow-lg);
+    flex-shrink: 0;
+    transition: transform 0.4s cubic-bezier(.2,.7,.2,1);
+  }
+  .photo-frame:hover { transform: scale(1.03) rotate(-1deg); }
+  .photo-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+
+  .hero-visual { display: flex; flex-direction: column; gap: 0.9rem; }
+  .role-card { background: white; border: 1px solid var(--border); border-radius: 16px; padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem; transition: all 0.25s cubic-bezier(.2,.7,.2,1); box-shadow: var(--shadow-sm); }
+  .role-card:hover { transform: translateX(6px); box-shadow: var(--shadow-md); border-color: var(--border-strong); }
+  .role-icon { width: 46px; height: 46px; border-radius: 13px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0; }
   .role-icon.math { background: var(--green-light); }
   .role-icon.dev { background: #e6f1fb; }
   .role-icon.consult { background: var(--gold-light); }
@@ -62,59 +94,66 @@
   .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; align-items: start; }
   .about-bio p { color: var(--ink-2); margin-bottom: 1.2rem; font-size: 1.05rem; }
   .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-  .stat-card { background: var(--surface-2); border-radius: 14px; padding: 1.25rem; }
+  .stat-card { background: var(--surface-2); border-radius: 16px; padding: 1.4rem; transition: transform 0.25s cubic-bezier(.2,.7,.2,1); border: 1px solid transparent; }
+  .stat-card:hover { transform: translateY(-3px); border-color: var(--border); background: white; box-shadow: var(--shadow-md); }
   .stat-number { font-family: var(--serif); font-size: 2rem; color: var(--ink); line-height: 1; margin-bottom: 4px; }
   .stat-label { font-size: 13px; color: var(--ink-3); line-height: 1.4; }
 
   .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-  .skill-block { border: 0.5px solid var(--border); border-radius: 16px; padding: 1.75rem; background: var(--surface); }
-  .skill-block-icon { font-size: 24px; margin-bottom: 1rem; }
+  .skill-block { border: 1px solid var(--border); border-radius: 18px; padding: 1.85rem; background: white; transition: all 0.3s cubic-bezier(.2,.7,.2,1); box-shadow: var(--shadow-sm); }
+  .skill-block:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--border-strong); }
+  .skill-block-icon { font-size: 26px; margin-bottom: 1rem; display: inline-flex; width: 52px; height: 52px; align-items: center; justify-content: center; background: var(--surface-2); border-radius: 14px; }
   .skill-block h3 { font-family: var(--serif); font-size: 1.25rem; color: var(--ink); margin-bottom: 0.75rem; }
   .skill-block p { font-size: 14px; color: var(--ink-2); line-height: 1.7; margin-bottom: 1rem; }
   .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-  .tag { font-family: var(--mono); font-size: 11px; padding: 4px 10px; border-radius: 100px; background: var(--surface-2); color: var(--ink-2); }
+  .tag { font-family: var(--mono); font-size: 11px; padding: 5px 11px; border-radius: 100px; background: var(--surface-2); color: var(--ink-2); transition: background 0.2s, color 0.2s; }
+  .skill-block:hover .tag { background: var(--green-light); color: var(--green); }
 
-  .projects-list { display: flex; flex-direction: column; border: 0.5px solid var(--border); border-radius: 16px; overflow: hidden; }
-  .project-row { background: white; padding: 1.75rem 2rem; display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: center; border-bottom: 0.5px solid var(--border); transition: background 0.15s; }
+  .projects-list { display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: 18px; overflow: hidden; box-shadow: var(--shadow-sm); }
+  .project-row { background: white; padding: 1.85rem 2rem; display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: center; border-bottom: 1px solid var(--border); transition: background 0.2s; }
   .project-row:last-child { border-bottom: none; }
   .project-row:hover { background: var(--surface-2); }
   .project-meta { font-size: 12px; color: var(--ink-3); margin-bottom: 4px; font-family: var(--mono); letter-spacing: 0.04em; }
-  .project-name { font-size: 1.1rem; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .project-name { font-size: 1.15rem; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
   .project-desc { font-size: 14px; color: var(--ink-2); }
-  .project-badge { padding: 5px 14px; border-radius: 100px; font-size: 12px; font-weight: 500; white-space: nowrap; }
+  .project-badge { padding: 6px 16px; border-radius: 100px; font-size: 12px; font-weight: 500; white-space: nowrap; text-decoration: none; transition: transform 0.2s; }
+  .project-badge:hover { transform: scale(1.05); }
   .badge-active { background: var(--green-light); color: var(--green); }
   .badge-done { background: var(--surface-2); color: var(--ink-3); }
   .badge-progress { background: var(--gold-light); color: var(--gold); }
 
   /* CERTIFICAÇÕES */
   .certs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-  .cert-card { background: white; border: 0.5px solid var(--border); border-radius: 14px; padding: 1.25rem 1.5rem; }
+  .cert-card { background: white; border: 1px solid var(--border); border-radius: 14px; padding: 1.35rem 1.5rem; transition: all 0.25s cubic-bezier(.2,.7,.2,1); box-shadow: var(--shadow-sm); }
+  .cert-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
   .cert-issuer { font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
   .cert-name { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 4px; line-height: 1.4; }
   .cert-year { font-size: 12px; color: var(--ink-3); }
-  .cert-card.highlight { border-color: var(--teal); background: var(--green-light); }
+  .cert-card.highlight { border-color: var(--teal); background: var(--green-light); box-shadow: 0 4px 16px rgba(15,110,86,0.12); }
   .cert-card.highlight .cert-name { color: var(--green); }
 
   /* EXPERIÊNCIAS */
-  .exp-list { display: flex; flex-direction: column; gap: 0; border: 0.5px solid var(--border); border-radius: 16px; overflow: hidden; }
-  .exp-row { background: white; padding: 1.5rem 2rem; border-bottom: 0.5px solid var(--border); display: grid; grid-template-columns: 110px 1fr; gap: 2rem; }
+  .exp-list { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--border); border-radius: 18px; overflow: hidden; box-shadow: var(--shadow-sm); }
+  .exp-row { background: white; padding: 1.6rem 2rem; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 110px 1fr; gap: 2rem; transition: background 0.2s; }
   .exp-row:last-child { border-bottom: none; }
+  .exp-row:hover { background: var(--surface-2); }
   .exp-year { font-family: var(--mono); font-size: 12px; color: var(--ink-3); padding-top: 3px; }
   .exp-role { font-weight: 500; font-size: 15px; color: var(--ink); margin-bottom: 2px; }
   .exp-org { font-size: 14px; color: var(--ink-2); }
 
   /* FORMAÇÃO */
   .edu-timeline { display: flex; flex-direction: column; position: relative; padding-left: 2rem; }
-  .edu-timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--border-strong); }
+  .edu-timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: linear-gradient(to bottom, var(--green), var(--border-strong)); }
   .edu-item { position: relative; padding-bottom: 2.5rem; padding-left: 1.5rem; }
-  .edu-item::before { content: ''; position: absolute; left: -1.5rem; top: 8px; width: 10px; height: 10px; border-radius: 50%; background: white; border: 2px solid var(--green); }
+  .edu-item::before { content: ''; position: absolute; left: -1.5rem; top: 8px; width: 11px; height: 11px; border-radius: 50%; background: white; border: 2.5px solid var(--green); box-shadow: 0 0 0 4px var(--green-light); }
   .edu-year { font-family: var(--mono); font-size: 12px; color: var(--ink-3); margin-bottom: 4px; }
   .edu-degree { font-weight: 500; font-size: 1rem; color: var(--ink); margin-bottom: 2px; }
   .edu-school { font-size: 14px; color: var(--ink-2); }
 
   /* IDIOMAS */
   .lang-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; }
-  .lang-card { background: white; border: 0.5px solid var(--border); border-radius: 12px; padding: 1rem; text-align: center; }
+  .lang-card { background: white; border: 1px solid var(--border); border-radius: 14px; padding: 1.1rem; text-align: center; transition: all 0.25s; box-shadow: var(--shadow-sm); }
+  .lang-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
   .lang-name { font-weight: 500; font-size: 14px; color: var(--ink); margin-bottom: 4px; }
   .lang-level { font-size: 12px; color: var(--ink-3); }
   .lang-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); margin: 8px auto 0; }
@@ -122,31 +161,25 @@
   .lang-dot.low { background: var(--border-strong); }
 
   /* CONTACTO */
-  .contact-section { background: var(--ink); padding: 6rem 0; }
+  .contact-section {
+    background:
+      radial-gradient(ellipse 800px 500px at 85% 0%, rgba(15,110,86,0.18), transparent 60%),
+      radial-gradient(ellipse 600px 400px at 0% 100%, rgba(186,117,23,0.12), transparent 60%),
+      var(--ink);
+    padding: 6.5rem 0;
+  }
   .contact-inner { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
   .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-top: 3rem; }
   .contact-intro { font-size: 1.05rem; color: rgba(255,255,255,0.65); line-height: 1.8; }
-  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
-  .contact-item { display: flex; align-items: center; gap: 1rem; padding: 1.1rem 1.5rem; border: 0.5px solid rgba(255,255,255,0.12); border-radius: 12px; text-decoration: none; color: white; transition: background 0.2s, border-color 0.2s; }
-  .contact-item:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.25); }
-  .contact-item-icon { width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 16px; }
-  .contact-item-label { font-size: 11px; color: rgba(255,255,255,0.45); }
+  .contact-links { display: flex; flex-direction: column; gap: 0.85rem; }
+  .contact-item { display: flex; align-items: center; gap: 1rem; padding: 1.15rem 1.5rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; text-decoration: none; color: white; transition: all 0.25s cubic-bezier(.2,.7,.2,1); background: rgba(255,255,255,0.02); }
+  .contact-item:hover { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.25); transform: translateX(4px); }
+  .contact-item-icon { width: 38px; height: 38px; border-radius: 10px; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+  .contact-item-label { font-size: 11px; color: rgba(255,255,255,0.45); letter-spacing: 0.03em; }
   .contact-item-value { font-size: 14px; font-weight: 500; }
 
-  footer { background: var(--ink); border-top: 0.5px solid rgba(255,255,255,0.08); padding: 1.5rem 2rem; text-align: center; font-size: 13px; color: rgba(255,255,255,0.3); }
-  .divider { border: none; border-top: 0.5px solid var(--border); max-width: 1100px; margin: 0 auto; }
-
-
-  .hero-photo { display: flex; align-items: center; justify-content: center; }
-  .photo-frame {
-    width: 180px; height: 180px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 4px solid white;
-    box-shadow: 0 0 0 2px var(--green);
-    flex-shrink: 0;
-  }
-  .photo-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+  footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.08); padding: 1.75rem 2rem; text-align: center; font-size: 13px; color: rgba(255,255,255,0.32); letter-spacing: 0.01em; }
+  .divider { border: none; border-top: 1px solid var(--border); max-width: 1100px; margin: 0 auto; }
 
   @media (max-width: 768px) {
     nav { padding: 0 1rem; }
@@ -169,6 +202,7 @@
   <ul class="nav-links">
     <li><a href="#sobre">Sobre</a></li>
     <li><a href="#experiencia">Experiência</a></li>
+    <li><a href="#projetos">Projetos</a></li>
     <li><a href="#competencias">Competências</a></li>
     <li><a href="#certificacoes">Certificações</a></li>
     <li><a href="#formacao">Formação</a></li>
@@ -231,7 +265,7 @@
 <hr class="divider">
 
 <!-- SOBRE -->
-<section id="sobre">
+<section id="sobre" class="reveal">
   <div class="section-eyebrow">01 — Sobre mim</div>
   <h2 class="section-title">Onde a Matemática<br>encontra a inovação</h2>
   <div class="about-grid" style="grid-template-columns: auto 1.2fr 1fr;">
@@ -274,7 +308,7 @@
 <hr class="divider">
 
 <!-- EXPERIÊNCIA -->
-<section id="experiencia">
+<section id="experiencia" class="reveal">
   <div class="section-eyebrow">02 — Experiência profissional</div>
   <h2 class="section-title">Um percurso<br>diversificado</h2>
   <div class="exp-list">
@@ -333,7 +367,7 @@
 <hr class="divider">
 
 <!-- COMPETÊNCIAS -->
-<section id="competencias" style="background:white; max-width:100%; padding:6rem 0;">
+<section id="competencias" class="reveal" style="background:white; max-width:100%; padding:6rem 0;">
   <div style="max-width:1100px; margin:0 auto; padding:0 2rem;">
     <div class="section-eyebrow">03 — Competências</div>
     <h2 class="section-title">O que faço bem</h2>
@@ -392,8 +426,26 @@
 
 <hr class="divider">
 
+<!-- PROJETOS -->
+<section id="projetos" class="reveal">
+  <div class="section-eyebrow">04 — Projetos</div>
+  <h2 class="section-title">Trabalho que<br>deixa marca</h2>
+  <div class="projects-list">
+    <div class="project-row">
+      <div>
+        <div class="project-meta">Web App · JavaScript · GitHub Pages · Educação</div>
+        <div class="project-name">Gerador de Planos de Aula</div>
+        <div class="project-desc">Aplicação web que automatiza a criação de planos de aula estruturados, agilizando o planeamento pedagógico para professores. Desenvolvida e publicada por mim em fica-eng.github.io/gerador-de-planos-de-aulas.</div>
+      </div>
+      <a href="https://fica-eng.github.io/gerador-de-planos-de-aulas/" target="_blank" class="project-badge badge-active">Ver projeto →</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
 <!-- CERTIFICAÇÕES -->
-<section id="certificacoes">
+<section id="certificacoes" class="reveal">
   <div class="section-eyebrow">04 — Certificações</div>
   <h2 class="section-title">Reconhecimento<br>internacional</h2>
   <div class="certs-grid">
@@ -448,15 +500,10 @@
 <hr class="divider">
 
 <!-- FORMAÇÃO -->
-<section id="formacao">
+<section id="formacao" class="reveal">
   <div class="section-eyebrow">05 — Formação académica</div>
   <h2 class="section-title">O caminho<br>até aqui</h2>
   <div class="edu-timeline">
-    <div class="edu-item">
-      <div class="edu-year">Em curso · Gestão de Empresas</div>
-      <div class="edu-degree">Licenciatura em Gestão de Empresas</div>
-      <div class="edu-school">Universidade Aberta ISCED · Moçambique</div>
-    </div>
     <div class="edu-item">
       <div class="edu-year">2018–2022</div>
       <div class="edu-degree">Licenciatura em Ensino de Matemática com Habilitações em Estatística</div>
@@ -508,19 +555,21 @@
 </section>
 
 <!-- CONTACTO -->
-<div class="contact-section">
+<div class="contact-section reveal">
   <div class="contact-inner">
     <div class="section-eyebrow" style="color:var(--gold);">06 — Contacto</div>
     <h2 class="section-title" style="color:white;">Vamos<br>conversar</h2>
     <div class="contact-grid">
       <p class="contact-intro">
-        Estou disponível para oportunidades em educação, análise de dados, inteligência artificial, formação profissional, finanças ou qualquer iniciativa que una conhecimento e impacto real em Moçambique e no mundo.
+        Estou disponível para oportunidades em educação, análise de dados, inteligência artificial, formação profissional ou qualquer iniciativa que una conhecimento e impacto real em Moçambique e no mundo.
       </p>
       <div class="contact-links">
-        <a href="tel:+258876344662" class="contact-item">
-          <div class="contact-item-icon">📱</div>
+        <a href="https://wa.me/258876344662" target="_blank" class="contact-item">
+          <div class="contact-item-icon" style="background:#25D366;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-1.76-.88-2.913-1.567-4.073-3.554-.308-.529.308-.49.88-1.63.099-.198.05-.371-.05-.52-.099-.149-.668-1.611-.916-2.207-.247-.595-.5-.514-.683-.523-.18-.009-.388-.009-.595-.009-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.04 3.12 4.95 4.247 2.91 1.126 2.91.751 3.83.625.918-.124 2.957-1.16 3.37-2.286.42-1.125.42-2.086.297-2.287-.122-.198-.297-.297-.594-.446z"/><path d="M12.05 2C6.495 2 1.99 6.477 1.99 12c0 1.962.546 3.797 1.494 5.36L2.05 22l4.795-1.26A10.13 10.13 0 0 0 12.05 22c5.555 0 10.06-4.477 10.06-10S17.605 2 12.05 2zm0 18.1c-1.74 0-3.36-.51-4.73-1.39l-.34-.21-3.55.93.95-3.46-.22-.36a8.05 8.05 0 0 1-1.27-4.41c0-4.47 3.63-8.1 8.1-8.1 4.47 0 8.1 3.63 8.1 8.1s-3.63 7.9-8.1 7.9z"/></svg>
+          </div>
           <div>
-            <div class="contact-item-label">Telemóvel / WhatsApp</div>
+            <div class="contact-item-label">WhatsApp</div>
             <div class="contact-item-value">+258 876 344 662</div>
           </div>
         </a>
@@ -530,8 +579,6 @@
             <div class="contact-item-label">Alternativo</div>
             <div class="contact-item-value">+258 844 334 461</div>
           </div>
-         <a href="https://linkedin.com/in/filipe-carlitos-alfredo-a20054276">
-  <img src="linkedin-icon.svg" alt="LinkedIn" width="32" height="32"/>
         </a>
         <a href="mailto:alfredofilipecarlitos@gmail.com" class="contact-item">
           <div class="contact-item-icon">✉️</div>
@@ -547,11 +594,20 @@
             <div class="contact-item-value">f.alfredo34@yahoo.com</div>
           </div>
         </a>
+        <a href="https://www.linkedin.com/in/filipe-carlitos-alfredo-a20054276" class="contact-item" target="_blank">
+          <div class="contact-item-icon" style="background:#0A66C2; padding:0;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 48 48"><rect width="48" height="48" rx="6" fill="#0A66C2"/><path fill="#fff" d="M14.4 19.6h5.2v15.7h-5.2V19.6zM17 17.4c-1.7 0-2.8-1.2-2.8-2.6 0-1.5 1.1-2.6 2.9-2.6 1.7 0 2.8 1.1 2.8 2.6 0 1.4-1.1 2.6-2.9 2.6zM35.6 35.3h-5.2v-8.2c0-2.1-.8-3.5-2.6-3.5-1.4 0-2.3.9-2.6 1.9-.1.3-.2.8-.2 1.3v8.5h-5.2s.1-14.4 0-15.7h5.2v2.2c.7-1 1.9-2.5 4.6-2.5 3.4 0 5.9 2.2 5.9 6.8v9.2z"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">LinkedIn</div>
+            <div class="contact-item-value">Filipe Carlitos Alfredo</div>
+          </div>
+        </a>
         <div class="contact-item" style="cursor:default;">
           <div class="contact-item-icon">📍</div>
           <div>
             <div class="contact-item-label">Residência</div>
-            <div class="contact-item-value">Chiuaula, Lichinga, Niassa</div>
+            <div class="contact-item-value">Bairro de Novo, Vila de Insaca, Niassa</div>
           </div>
         </div>
       </div>
@@ -563,5 +619,24 @@
   © 2026 Filipe Carlitos Alfredo · Professor · Analista de Dados · Consultor de IA · Moçambique
 </footer>
 
+<script>
+  // Nav shadow on scroll
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 12);
+  });
+
+  // Scroll reveal animation
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  revealEls.forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
