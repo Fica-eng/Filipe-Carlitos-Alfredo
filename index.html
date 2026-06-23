@@ -56,6 +56,15 @@
   .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--green); }
   .hero h1 { font-family: var(--serif); font-size: clamp(2.8rem, 5vw, 4.2rem); line-height: 1.08; letter-spacing: -0.03em; color: var(--ink); margin-bottom: 1.5rem; }
   .hero h1 em { font-style: italic; background: linear-gradient(100deg, var(--gold), #d99a3e); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .word-blue { color: #1d6fd9; }
+  .word-green { color: var(--green); }
+  .word-gold { background: linear-gradient(100deg, var(--gold), #d99a3e); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  .section-img-wrap { border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-lg); position: relative; aspect-ratio: 4/3; }
+  .section-img-wrap.wide { aspect-ratio: 16/6; }
+  .section-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(.2,.7,.2,1); }
+  .section-img-wrap:hover img { transform: scale(1.05); }
+  .section-img-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem; background: linear-gradient(to top, rgba(0,0,0,0.65), transparent); color: white; font-size: 13px; font-family: var(--mono); letter-spacing: 0.03em; }
   .hero-desc { font-size: 1.05rem; color: var(--ink-2); line-height: 1.8; margin-bottom: 2.5rem; max-width: 480px; }
   .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
   .btn-primary { background: var(--ink); color: var(--surface); padding: 13px 30px; border-radius: 100px; font-size: 14px; font-weight: 500; text-decoration: none; transition: all 0.25s cubic-bezier(.2,.7,.2,1); display: inline-block; box-shadow: var(--shadow-sm); }
@@ -220,9 +229,9 @@
     </div>
     <div>
       <div class="hero-eyebrow">Niassa · Moçambique</div>
-      <h1>Professor,<br><em>Analista</em><br>& Inovador</h1>
+      <h1><span class="word-green">Professor</span>,<br><span class="word-blue">Analista</span><br>& <em>Inovador</em></h1>
       <p class="hero-desc">
-        Licenciado em Ensino de Matemática com Habilitações em Estatística pela UniRovuma. Combino pedagogia, análise de dados e inteligência artificial para transformar a educação e a governação digital em Moçambique.
+        Licenciado em Ensino de Matemática com Habilitações em Estatística pela UniRovuma. Combino <span class="word-green" style="font-weight:600;">pedagogia</span>, <span class="word-blue" style="font-weight:600;">análise de dados</span> e <span class="word-gold" style="font-weight:600;">inteligência artificial</span> para transformar a educação e a governação digital em Moçambique.
       </p>
       <div class="hero-actions">
         <a href="#experiencia" class="btn-primary">Ver experiência</a>
@@ -267,7 +276,7 @@
 <!-- SOBRE -->
 <section id="sobre" class="reveal">
   <div class="section-eyebrow">01 — Sobre mim</div>
-  <h2 class="section-title">Onde a Matemática<br>encontra a inovação</h2>
+  <h2 class="section-title">Onde a <span class="word-green">Matemática</span><br>encontra a <span class="word-blue">inovação</span></h2>
   <div class="about-grid" style="grid-template-columns: auto 1.2fr 1fr;">
   <div style="display:flex; flex-direction:column; align-items:center; gap:1rem;">
     <div style="width:140px; height:140px; border-radius:50%; overflow:hidden; border:3px solid var(--green); flex-shrink:0;">
@@ -303,6 +312,10 @@
       </div>
     </div>
   </div>
+  <div class="section-img-wrap wide" style="margin-top:2.5rem;">
+    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1400&q=80" alt="Ensino de matemática" loading="lazy">
+    <div class="section-img-caption">Matemática · Estatística · Educação para o futuro</div>
+  </div>
 </section>
 
 <hr class="divider">
@@ -310,7 +323,7 @@
 <!-- EXPERIÊNCIA -->
 <section id="experiencia" class="reveal">
   <div class="section-eyebrow">02 — Experiência profissional</div>
-  <h2 class="section-title">Um percurso<br>diversificado</h2>
+  <h2 class="section-title">Um <span class="word-blue">percurso</span><br><span class="word-green">diversificado</span></h2>
   <div class="exp-list">
     <div class="exp-row">
       <div class="exp-year">2024–2025</div>
@@ -370,7 +383,7 @@
 <section id="competencias" class="reveal" style="background:white; max-width:100%; padding:6rem 0;">
   <div style="max-width:1100px; margin:0 auto; padding:0 2rem;">
     <div class="section-eyebrow">03 — Competências</div>
-    <h2 class="section-title">O que faço bem</h2>
+    <h2 class="section-title">O que <span class="word-gold">faço bem</span></h2>
     <div class="skills-grid">
       <div class="skill-block">
         <div class="skill-block-icon">📐</div>
@@ -421,6 +434,10 @@
         </div>
       </div>
     </div>
+    <div class="section-img-wrap wide" style="margin-top:2.5rem;">
+      <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1400&q=80" alt="Inteligência Artificial e tecnologia" loading="lazy">
+      <div class="section-img-caption">Inteligência Artificial · Dados · Tecnologia ao serviço da educação</div>
+    </div>
   </div>
 </section>
 
@@ -429,7 +446,7 @@
 <!-- PROJETOS -->
 <section id="projetos" class="reveal">
   <div class="section-eyebrow">04 — Projetos</div>
-  <h2 class="section-title">Trabalho que<br>deixa marca</h2>
+  <h2 class="section-title"><span class="word-green">Trabalho</span> que<br>deixa <span class="word-blue">marca</span></h2>
   <div class="projects-list">
     <div class="project-row">
       <div>
@@ -440,6 +457,10 @@
       <a href="https://fica-eng.github.io/gerador-de-planos-de-aulas/" target="_blank" class="project-badge badge-active">Ver projeto →</a>
     </div>
   </div>
+  <div class="section-img-wrap wide" style="margin-top:2.5rem;">
+    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1400&q=80" alt="Desenvolvimento de software" loading="lazy">
+    <div class="section-img-caption">Código · Desenvolvimento web · Soluções digitais</div>
+  </div>
 </section>
 
 <hr class="divider">
@@ -447,7 +468,7 @@
 <!-- CERTIFICAÇÕES -->
 <section id="certificacoes" class="reveal">
   <div class="section-eyebrow">04 — Certificações</div>
-  <h2 class="section-title">Reconhecimento<br>internacional</h2>
+  <h2 class="section-title"><span class="word-gold">Reconhecimento</span><br><span class="word-green">internacional</span></h2>
   <div class="certs-grid">
     <div class="cert-card highlight">
       <div class="cert-issuer">Anthropic</div>
@@ -502,7 +523,7 @@
 <!-- FORMAÇÃO -->
 <section id="formacao" class="reveal">
   <div class="section-eyebrow">05 — Formação académica</div>
-  <h2 class="section-title">O caminho<br>até aqui</h2>
+  <h2 class="section-title">O <span class="word-blue">caminho</span><br>até <span class="word-green">aqui</span></h2>
   <div class="edu-timeline">
     <div class="edu-item">
       <div class="edu-year">2018–2022</div>
